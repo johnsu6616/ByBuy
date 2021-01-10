@@ -50,54 +50,6 @@
 			<input type="button" onclick="json2table('myTable')" value="還原">
 		</p>
 
-		<script type="text/javascript">
-			function json2table(jsonString, $table) {
-				var json = JSON.parse(jsonString);
-				var cols = Object.keys(json[0]);
-
-				var headerRow = '';
-				var bodyRows = '';
-
-				function capitalizeFirstLetter(string) {
-					return string.charAt(0).toUpperCase() + string.slice(1);
-				}
-
-				$table.html('<thead><tr></tr></thead><tbody></tbody>');
-
-				cols.map(function (col) {
-					headerRow += '<th>' + capitalizeFirstLetter(col) + '</th>';
-				});
-
-				json.map(function (row) {
-					bodyRows += '<tr>';
-
-					cols.map(function (colName) {
-						bodyRows += '<td>' + row[colName] + '</td>';
-					})
-
-					bodyRows += '</tr>';
-				});
-
-				$table.find('thead tr').append(headerRow);
-				$table.find('tbody').append(bodyRows);
-			}
-
-
-			// ==== DEMO ====
-
-			/*
-			var json = `[
-			{\"id\":1,\"name\":\"Jay\",\"email\":\"Jay@gmail.com\",\"password\":\"123456\"},
-			{\"id\":2,\"name\":\"Briton\",\"email\":\"Briton@gmail.com\",\"password\":\"123456\"},
-			{\"id\":4,\"name\":\"Tony\",\"email\":\"Tony@gmail.com\",\"password\":\"123456\"}     
-			]`;
-			*/
-			<a href="./ByBuy/itemPrice.txt" target="_blank">
-			itemPrice.txt
-			</a>
-			var json = itemPrice.txt;
-			json2table(json, $("#myTable"));
-		</script>
 
 		<table id="myTable" class="table" style ="border: 1px solid black">
 			<tbody>
