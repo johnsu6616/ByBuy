@@ -5,159 +5,15 @@
 		<title>ByBuy</title>
 
 		<style type="text/css">
-			body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
-    }
-
+		body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
 		</style>
-		<script
-		src="https://code.jquery.com/jquery-1.12.4.min.js"
-		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-		crossorigin="anonymous"></script>
-		<!--
-		<script
-		src="https://code.jquery.com/jquery-1.12.4.min.js"
-		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-		crossorigin="anonymous"></script>
-		-->
-		<!--
-        <script type="text/javascript" src="./BuyBy/jquery-1.12.4.min.js">
+		
+		<script	src="/ByBuy/jquery-3.5.1.min.js">
 		</script>
-		-->
-		<!--
-		<script type="text/javascript" src="./BuyBy/ListItem.js">
-        </script>
-		-->
+
 		<script>
-		$(function(){  
-//$("#loaddata").click(function(){  
-$(document).ready(function(){   
-//使用getJSON方法讀取json資料,   
-//注意：info.json可以是不同型別檔案，只要其中的資料為json型別即可   
-$.getJSON('./BuyBy/itemPrice.json',function(data){    
-var html = '';    
-$.each(data,function(i,item){    
-html  = '<TR><TD>' item['品項'] '</TD>'     
-'<TD>' item['價格'] '</TD></TR>';    
-});    
-$('#title').after(html);    
-//after方法:在每個匹配的元素之後插入內容。  
-});  
-}); 
-});  
-//注:可以是item.address,也可以是item['address'] 
-//firefox報 json檔案中 “語法錯誤 [”,單能載入資料 //ie chrome 無法載入資料 
-		/*
-		function insRow(id) {
-			var x = document.getElementById(id).insertRow(0);
-			var y = x.insertCell(0);
-			var z = x.insertCell(1);
-			y.innerHTML = "NewY";
-			z.innerHTML = "NewZ";
-		}
-		*/
-		/*
-		function insRowA(id) {
-			var myArray = [[1,2,3],[4,5,6],[7,8,9]];
-			var t = document.getElementById(id);
-			for(var i=0;i<myArray.length;i++) {
-				t.insertRow();
-				for(var j=0;j<myArray[i].length;j++) {
-					t.rows[i].insertCell(j);
-					t.rows[i].cells[j].innerText = myArray[i][j];
-				}	
-			}
-		}
-		*/
-		function renewList(){
-			var requestURL = "itemPrice.json";
-			var request = new XMLHttpRequest();
-			request.open('GET', requestURL);
-			request.responseType = 'json';
-			request.send();
-
-			request.onload = function() {
-				var superHeroesText = request.response; // get the string from the response
-				var superHeroes = JSON.parse(superHeroesText); // convert it to an object
-				populateHeader(superHeroes);
-				showHeroes(superHeroes);
-}
-		} 
-		function addRow() {
-			var table = document.getElementById('myTable');
-			var columnLength = table.getElementsByTagName('tr')[0].children.length;
-			var units = document.getElementsByClassName('unit-table');
-			var tr = document.createElement('tr');
-			tr.className = 'unit-table';
-			for (var i = 0; i < columnLength; i++) {
-				var td = document.createElement('td');
-				var text = document.createElement('input');
-				text.type = 'text';
-				td.appendChild(text);
-				tr.appendChild(td);
-			}
-			/*
-			for(var j > 0; j < columnLength; j++){
-				table.deleteRow(1);
-			}
-			*/
-			table.appendChild(tr);
-		}
 		</script>
 
-		<script type="text/javascript">
-		var Ajax = function (){
-			$.getJSON ("./BuyBy/itemPrice.txt", function (data)
-			{
-				$.each (data, function (i, item)
-				{
-					$ ("#disp").append ("<h3>" + item.品項 + "</h3>");
-					$ ("#disp").append ("<p>" + item.價錢 + "</p>");
-				});
-			});
-		}
-        $(document).ready(function(){
-            function formatSolution(data){
-                var solutionCount = data.solution_count;
-                var solutions = data.solutions;
-                var resultHTML = "<div>solution count: "+solutionCount.toString()+"</div>";
-                resultHTML += "<div>solutions:</div>";
-                for(var i in solutions){
-                    var solutionStr = solutions[i].map(function(price){
-                        return price.toString();
-                    }).join(",");
-                    resultHTML += "<div>"+solutionStr+"</div>"
-                }
-                return resultHTML;
-            }
-            $("#find_exact_purchase").submit(function(e){
-                e.preventDefault();
-                var find_exact_purchase = $("#find_exact_purchase");
-                var pricesStr = find_exact_purchase.find("input:text[name='prices']").val();
-                var budgetStr = find_exact_purchase.find("input:text[name='budget']").val();
-                var action_url = "/api/find_exact_purchase";
-
-                var prices = pricesStr.split(",").map(function(num){
-                    return parseInt(num);
-                });
-                var budget = parseInt(budgetStr);
-
-                var data = {prices: prices, budget: budget};
-                $.ajax({
-                    type: "POST",
-                    url: action_url,
-                    data: JSON.stringify(data),
-                    success: function(data, textStatus, jqXHR){
-                        $("#solution").html(formatSolution(data));
-                    },
-                    dataType:"json"
-                })
-
-                //$("#find_exact_purchase").attr("action", action_url);
-            });
-        });
-		</script>
-		<INPUT id=loaddata value=載入資料 type=button>  
-<TABLE id=infotable><TBODY><TR id=title><TH>品項</TH><TH>價格</TH>></TR></TBODY></TABLE>
     </head>
     <body>
         <h1>販賣機</h1>
@@ -170,38 +26,7 @@ $('#title').after(html);
 			<input type="text" name="overage" size="1" value="250" readonly>
 		</p>
 
-		<p>
-			Jason項目：
 
-			<!--
-			<input type="text" name="prices" size="1" value="10">
-			<input type="button" onclick="insRow('myTable')" value="插入行">
-			-->
-			
-			<input type="button" onclick="renewList('myTable')" value="同步">
-		</p>
-
-
-		<table id="myTable" class="table" style ="border: 1px solid black">
-			<tbody>
-				<tr class="unit-table">
-					<th>
-						品項：
-					</th>
-					<th>
-						價錢：
-					</th>
-				</tr>
-				<tr class="unit-table">
-					<td>
-						<input type="text" >
-					</td>
-					<td>
-						<input type="text" >
-					</td>
-				</tr>
-			</tbody>
-		</table>
 		<p>
 			可選方案數:
 			<input type="text" name="overage" size="1" value="1509" readonly>
@@ -225,9 +50,6 @@ $('#title').after(html);
 			<input type="button" onclick="json2table('myTable')" value="還原">
 		</p>
 
-            <!--
-			<input type="submit">
-			-->
         <div id="table">
 		</div>
 
@@ -280,7 +102,38 @@ $('#title').after(html);
 			json2table(json, $("#myTable"));
 		</script>
 		
+		<p>
+			Jason項目：
 
+			<!--
+			<input type="text" name="prices" size="1" value="10">
+			<input type="button" onclick="insRow('myTable')" value="插入行">
+			-->
+			
+			<input type="button" onclick="renewList('myTable')" value="同步">
+		</p>
+
+
+		<table id="myTable" class="table" style ="border: 1px solid black">
+			<tbody>
+				<tr class="unit-table">
+					<th>
+						品項：
+					</th>
+					<th>
+						價錢：
+					</th>
+				</tr>
+				<tr class="unit-table">
+					<td>
+						<input type="text" >
+					</td>
+					<td>
+						<input type="text" >
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
 	</body>
 </html>
