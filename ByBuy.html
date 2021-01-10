@@ -21,11 +21,6 @@
 			總額度：
 			<input type="text" name="budget" size="1" value="250">
 		</p>
-		<p>
-			餘額:
-			<input type="text" name="overage" size="1" value="250" readonly>
-		</p>
-
 
 		<p>
 			可選方案數:
@@ -54,9 +49,6 @@
 			預設值：
 			<input type="button" onclick="json2table('myTable')" value="還原">
 		</p>
-
-        <div id="table">
-		</div>
 
 		<script type="text/javascript">
 			function json2table(jsonString, $table) {
@@ -106,18 +98,6 @@
 			var json = itemPrice.txt;
 			json2table(json, $("#myTable"));
 		</script>
-		
-		<p>
-			Jason項目：
-
-			<!--
-			<input type="text" name="prices" size="1" value="10">
-			<input type="button" onclick="insRow('myTable')" value="插入行">
-			-->
-			
-			<input type="button" onclick="renewList('myTable')" value="同步">
-		</p>
-
 
 		<table id="myTable" class="table" style ="border: 1px solid black">
 			<tbody>
