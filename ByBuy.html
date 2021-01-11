@@ -7,12 +7,29 @@
 		<style type="text/css">
 		body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
 		</style>
-		
-		<script	src="/ByBuy/jquery-3.5.1.min.js">
+<!--
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.js"></script>
+-->
+		<script	
+		type="text/javascript"
+		src="ByBuy/jquery-3.5.1.min.js">
 		</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            var str = "ByBuy/ItemPrice.json";
+            url =str;
+  
+            $.ajaxSetup({
+                async: false
+            }); 
+ 
+            $.getJSON(url, {}, function (data) { //讀取json資料,把資料放進data裡
+                $("#status").text(品項);
+                $("#meta").text(價格);
+            });
+        });
 
-		<script>
-		</script>
+    </script>
 
     </head>
     <body>
@@ -67,28 +84,8 @@
 			預設值：
 			<input type="button" onclick="json2table('myTable')" value="還原">
 		</p>
-
-
-		<table id="myTable" class="table" style ="border: 1px solid black">
-			<tbody>
-				<tr class="unit-table">
-					<th>
-						品項：
-					</th>
-					<th>
-						價錢：
-					</th>
-				</tr>
-				<tr class="unit-table">
-					<td>
-						<input type="text" >
-					</td>
-					<td>
-						<input type="text" >
-					</td>
-				</tr>
-			</tbody>
-		</table>
+          <div id="status"></div>
+          <div id="meta"></div>
 
 	</body>
 </html>
