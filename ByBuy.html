@@ -1,4 +1,4 @@
-<!--註解用法-->
+﻿<!--註解用法-->
 <html>
 	<head>
 		<meta charset="UTF-8" />
@@ -12,6 +12,36 @@
 		</script>
 
 		<script>
+            $(document).ready(function () {
+                // $.getJSON(url, callback);
+                $.getJSON('/ByBuy/itemPrice.json', function (json) {
+                    tableGenerator('#tableName', json);
+                });
+            });
+
+            function tableGenerator(selector, data) { // data is an array
+                var keys = Object.keys(Object.assign({}, ...data));// Get the keys to make the header
+                // Add header
+                var head = '<thead><tr>';
+                keys.forEach(function (key) {
+                    head += '<th>' + key + '</th>';
+                });
+                $(selector).append(head + '</tr></thead>');
+                // Add body
+                var body = '<tbody>';
+                data.forEach(function (obj) { // For each row
+                    var row = '<tr>';
+                    keys.forEach(function (key) { // For each column
+                        row += '<td>';
+                        if (obj.hasOwnProperty(key)) { // If the obj doesnt has a certain key, add a blank space.
+                            row += obj[key];
+                        }
+                        row += '</td>';
+                    });
+                    body += row + '<tr>';
+                })
+                $(selector).append(body + '</tbody>');
+            }
 		</script>
 
     </head>
@@ -90,5 +120,7 @@
 			</tbody>
 		</table>
 
+        <table id="tableName"></table>
 	</body>
+
 </html>
