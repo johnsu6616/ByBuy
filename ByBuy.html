@@ -7,70 +7,18 @@
 		<style type="text/css">
 		body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
 
-		#Sidebar{
-　width:120px;
-　float:left;
-　height:280px;
-　text-align:center;
-　line-height:280px;
-　font-size:15px;
-　color:#ffffff;
-　font-weight:bold;
-　background-color:#cecece;
-}
-#body{
-　width:240px;
-　height:280px;
-　text-align:center;
-　line-height:280px;
-　font-size:15px;
-　color:#f9c81e;
-　font-weight:bold;
-　background-color:#fffaf3;
-　float:left;
-}
 		</style>
 
-		<script	
-		type="text/javascript"
-		src="https://johnsu6616.github.io/ByBuy/ByBuy/jquery-3.5.1.min.js">
-		</script>
-		
 		<script type="text/javascript">
-		/*
-		$(document).ready(function() {
-			var str = "https://johnsu6616.github.io/ByBuy/ByBuy/itemPrice.json";
-			url =str;
-  
-			$.ajaxSetup({
-				async: false
-			}); 
- 
-			$.getJSON(url, {}, function (data) { //讀取json資料,把資料放進data裡
-				var i = 0;
-				$.each (data, function (i, item)
-			{
-				
-			$ ("#disp1").append ("<tr>" +"<th>" + item.Product + "</th>"+"</tr>");
-			$ ("#disp2").append ("<tr>" +"<th>" + item.Price + "</th>"+"</tr>");
-
-				
-			});
-            });
-        });
-		*/
 		</script>
-
-
-
-
-
 
     </head>
     <body>
-<!-- 
+	<div id="Sidebar">Sidebar</div>
+<div id="Body">Body 欄位</div>
+		    <link rel="stylesheet" href="style.css">
         <h1>販賣機</h1>
--->
+
 		<p>
 			總額度：
 			<input type="text" name="budget" size="1" value="250">
