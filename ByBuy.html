@@ -14,23 +14,24 @@
 		</script>
 		
 		<script type="text/javascript">
-        $(document).ready(function() {
-            var str = "ByBuy/ItemPrice.json";
-            url =str;
+		$(document).ready(function() {
+			var str = "/ByBuy/ItemPrice.json";
+			url =str;
   
-            $.ajaxSetup({
-                async: false
-            }); 
+			$.ajaxSetup({
+				async: false
+			}); 
  
-            $.getJSON(url, {}, function (data) { //讀取json資料,把資料放進data裡
-                //$("#status").text(data.Product);
-                //$("#meta").text(data.Price);
+			$.getJSON(url, {}, function (data) { //讀取json資料,把資料放進data裡
+				var i = 0;
 				$.each (data, function (i, item)
-				{
-                $ ("#disp").append ("<h3>" + item.Product + "</h3>");
-                $ ("#disp").append ("<p>" + item.Price + "</p>");
+			{
+				
+			$ ("#disp1").append ("<tr>" +"<td>" + item.Product + "</td>"+"</tr>");
+			$ ("#disp2").append ("<tr>" +"<td>" + item.Price + "</td>"+"</tr>");
 
-				});
+				
+			});
             });
         });
 
@@ -91,6 +92,8 @@
 		</p>
 			<div id="status"></div>
 			<div id="meta"></div>
-			<div id="disp"></div>
+			<div id="disp1"></div>
+			<div id="disp2"></div>
 	</body>
 </html>
+
