@@ -7,42 +7,34 @@
 		<style type="text/css">
 		body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
 		</style>
+
+		<script	
+		type="text/javascript"
+		src="ByBuy/jquery-3.5.1.min.js">
+		</script>
 		
-		<script	src="/ByBuy/jquery-3.5.1.min.js">
-		</script>
+		<script type="text/javascript">
+        $(document).ready(function() {
+            var str = "ByBuy/ItemPrice.json";
+            url =str;
+  
+            $.ajaxSetup({
+                async: false
+            }); 
+ 
+            $.getJSON(url, {}, function (data) { //讀取json資料,把資料放進data裡
+                //$("#status").text(data.Product);
+                //$("#meta").text(data.Price);
+				$.each (data, function (i, item)
+				{
+                $ ("#disp").append ("<h3>" + item.Product + "</h3>");
+                $ ("#disp").append ("<p>" + item.Price + "</p>");
 
-		<script>
-            $(document).ready(function () {
-                // $.getJSON(url, callback);
-                $.getJSON('/ByBuy/itemPrice.json', function (json) {
-                    tableGenerator('#tableName', json);
-                });
+				});
             });
+        });
 
-            function tableGenerator(selector, data) { // data is an array
-                var keys = Object.keys(Object.assign({}, ...data));// Get the keys to make the header
-                // Add header
-                var head = '<thead><tr>';
-                keys.forEach(function (key) {
-                    head += '<th>' + key + '</th>';
-                });
-                $(selector).append(head + '</tr></thead>');
-                // Add body
-                var body = '<tbody>';
-                data.forEach(function (obj) { // For each row
-                    var row = '<tr>';
-                    keys.forEach(function (key) { // For each column
-                        row += '<td>';
-                        if (obj.hasOwnProperty(key)) { // If the obj doesnt has a certain key, add a blank space.
-                            row += obj[key];
-                        }
-                        row += '</td>';
-                    });
-                    body += row + '<tr>';
-                })
-                $(selector).append(body + '</tbody>');
-            }
-		</script>
+    </script>
 
     </head>
     <body>
@@ -97,30 +89,8 @@
 			預設值：
 			<input type="button" onclick="json2table('myTable')" value="還原">
 		</p>
-
-
-		<table id="myTable" class="table" style ="border: 1px solid black">
-			<tbody>
-				<tr class="unit-table">
-					<th>
-						品項：
-					</th>
-					<th>
-						價錢：
-					</th>
-				</tr>
-				<tr class="unit-table">
-					<td>
-						<input type="text" >
-					</td>
-					<td>
-						<input type="text" >
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-        <table id="tableName"></table>
+			<div id="status"></div>
+			<div id="meta"></div>
+			<div id="disp"></div>
 	</body>
-
 </html>
