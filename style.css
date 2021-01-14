@@ -6,18 +6,18 @@ p{
 }
 .left{
 	position: relative;
-width:200px;　//DIV區塊寬度
-line-height:50px;　//DIV區塊高度
-padding:20px;　//DIV區塊內距，參閱：CSS padding 內距。
-border:2px blue solid;　//DIV區塊邊框，參閱：CSS border 邊框設計。
-margin-right:10px;　//靠右外距，參閱：CSS margin 邊界使用介紹範例教學。
-float:left;
+	width:200px;　//DIV區塊寬度
+	line-height:50px;　//DIV區塊高度
+	padding:20px;　//DIV區塊內距，參閱：CSS padding 內距。
+	border:2px blue solid;　//DIV區塊邊框，參閱：CSS border 邊框設計。
+	margin-right:10px;　//靠右外距，參閱：CSS margin 邊界使用介紹範例教學。
+	float:left;
 }
 .right{
 	position: relative;
-width:200px;
-line-height:50px;
-padding:20px;
-border:2px green solid;
-float:left;
+	width:200px;
+	line-height:50px;
+	padding:20px;
+	border:2px green solid;
+	float:left;
 }

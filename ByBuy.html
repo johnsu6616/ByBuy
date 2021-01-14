@@ -3,21 +3,24 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>ByBuy</title>
-
+		<h1>販賣機</h1>
+		<!--
 		<style type="text/css">
 		body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
 
 		</style>
+		-->
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script type="text/javascript">
 		</script>
+
 
     </head>
     <body>
 		<div class="parent">
 			<div class="left">
 
-				<h1>販賣機</h1>
+
 
 				<p>
 					總額度：
@@ -70,8 +73,9 @@
 			</div>
 
 			<div class="right">
+			
 				<div id="id01"></div>
-
+				<!--
 				<script>
 				var xmlhttp = new XMLHttpRequest();
 				var url = "https://johnsu6616.github.io/ByBuy/ByBuy/itemPrice.json";
@@ -95,6 +99,9 @@
 					document.getElementById("id01").innerHTML = out;
 				}
 				</script>
+				-->
+				<ul id="myList"></ul>
+				<script src="loadJson.js"></script>
 			</div>
 		</div>
 	</body>
