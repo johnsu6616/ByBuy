@@ -21,6 +21,7 @@
       loadJSONDoc();
     });
 */
+/*
 var xmlhttp = new XMLHttpRequest();
 var url = "https://johnsu6616.github.io/ByBuy/ByBuy/itemPrice.json";
 
@@ -42,7 +43,17 @@ function loadJSONDoc(arr) {
     }
     document.getElementById("id01").innerHTML = out;
 }
-
-
-console.log(typeof json_data !== 'undefined'
+*/
+    var Ajax = function ()
+    {
+        $.getJSON ("https://johnsu6616.github.io/ByBuy/ByBuy/itemPrice.json", function (data)
+        {
+            $.each (data, function (i, item)
+            {
+                $ ("#myList").append ("<p>" + item.Product + "</p>");
+				$ ("#myList").append ("<p>" + item.Price + "</p>");
+            });
+        });
+    }
+console.log(typeof json_data !=== 'undefined'
     ? json_data.length : 'There is no spoon.');
