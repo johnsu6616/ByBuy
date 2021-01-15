@@ -3,98 +3,107 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>ByBuy</title>
-
+		<h1>販賣機</h1>
+		<!--
 		<style type="text/css">
 		body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
 
 		</style>
+		-->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
 
-		<script type="text/javascript">
-		</script>
 
     </head>
     <body>
-	<div id="Sidebar">Sidebar</div>
-<div id="Body">Body 欄位</div>
-		    <link rel="stylesheet" href="style.css">
-        <h1>販賣機</h1>
+		<div class="parent">
+			<div class="left">
 
-		<p>
-			總額度：
-			<input type="text" name="budget" size="1" value="250">
-		</p>
 
-		<p>
-			可選方案數:
-			<input type="text" name="overage" size="1" value="1509" readonly>
-		</p>
-		<table id="Table" class="table" size="1" style ="border: 1px solid black">
-			<tbody>
-				<tr>
-					<th>
-						第一次購買
-					</th>
-				</tr>
-				<tr>
-					<td>
-		<select>
-		<optgroup label="第一次購買">
-		<option>AA</option>
-		<option>BB</option>
-		<option>CCr</option>
-		<option>DD</option>
-		<option>EE</option>
-		<option>FF</option>
-		</optgroup>
-		</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="text" name="overage" size="1" value="250" readonly>
-					</td>
-				</tr>	
-			</tbody>
-		</table>
-		<input type="button" onclick="addRow('myTable')" value="確定">
+
+				<p>
+					總額度：
+					<input type="text" name="budget" size="1" value="250">
+				</p>
+
+				<p>
+					可選方案數:
+					<input type="text" name="overage" size="1" value="1509" readonly>
+				</p>
+				<table id="Table" class="table" size="1" style ="border: 1px solid black">
+					<tbody>
+						<tr>
+							<th>
+								第一次購買
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<select>
+									<optgroup label="第一次購買">
+									<option>AA</option>
+									<option>BB</option>
+									<option>CCr</option>
+									<option>DD</option>
+									<option>EE</option>
+									<option>FF</option>
+									</optgroup>
+								</select>
+							</td>
+						</tr>
+							<tr>
+								<td>
+									<input type="text" name="overage" size="1" value="250" readonly>
+								</td>
+							</tr>	
+					</tbody>
+				</table>
+				<input type="button" onclick="addRow('myTable')" value="確定">
 	    
-		<p>
-			餘額:
-			<input type="text" name="overage" size="1" value="250" readonly>
-		</p>
+				<p>
+					餘額:
+					<input type="text" name="overage" size="1" value="250" readonly>
+				</p>
 	    
-		<p>
-			預設值：
-			<input type="button" onclick="json2table('myTable')" value="還原">
-		</p>
+				<p>
+					預設值：
+					<input type="button" onclick="json2table('myTable')" value="還原">
+				</p>
+			</div>
 
-		<div id="disp1"></div>
-		<div id="disp2"></div>
-		<div id="id01"></div>
+			<div class="right">
+			
+				<div id="id01"></div>
+				<!--
+				<script>
+				var xmlhttp = new XMLHttpRequest();
+				var url = "https://johnsu6616.github.io/ByBuy/ByBuy/itemPrice.json";
 
-<script>
-var xmlhttp = new XMLHttpRequest();
-var url = "https://johnsu6616.github.io/ByBuy/ByBuy/itemPrice.json";
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var myArr = JSON.parse(this.responseText);
+						myFunction(myArr);
+					}
+				};
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send();
 
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    var myArr = JSON.parse(this.responseText);
-    myFunction(myArr);
-  }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
-function myFunction(arr) {
-  var out = "";
-  var i;
-  for(i = 0; i < arr.length; i++) {
-    out += '<a href="' + arr[i].url + '">' + 
-    arr[i].display + '</a><br>';
-  }
-  document.getElementById("id01").innerHTML = out;
-}
-</script>
+				function myFunction(arr) {
+					var out = "";
+					var i;
+					for(i = 0; i < arr.length; i++) {
+						out += '<a href="' + arr[i].url + '">' + 
+						arr[i].display + '</a><br>';
+					}
+					document.getElementById("id01").innerHTML = out;
+				}
+				</script>
+				-->
+				<ul id="myList"></ul>
+				    <div id="disp"></div>
+				<script src="loadJson.js"></script>
+			</div>
+		</div>
 	</body>
 </html>
 
