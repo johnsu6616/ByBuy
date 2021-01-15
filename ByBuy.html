@@ -3,22 +3,61 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>ByBuy</title>
-		<h1>販賣機</h1>
-		<!--
-		<style type="text/css">
-		body {font-family:'微軟正黑體', Verdana, Arial, Helvetica, sans-serif;}
 
+
+		<style type="text/css">
+            .wrap {
+                /*一個拿來當作父親的區塊，用甚麼都不太適合?有機會在研究*/
+                height: 850px;
+                display: flex-wrap;
+                /*布局設定*/
+	            position:relative;
+                left: 20px;
+            }
+            p {margin: 0; }
+            .left {
+
+                width: 200px;
+                /*區塊寬度*/
+                height: inherit; 
+                /*區塊高度，inherit是根據父元素，也可以用100%，或是px來限定高度*/
+                float: left; 
+                /*靠左*/
+                background: Moccasin;
+                /*背景顏色*/
+                border:5px #FFAC55 solid;
+                /*邊框顏色*/
+	            padding:20px;
+                /*內距*/
+                margin-right:30px;
+                /*靠右外距，但是放在右邊就沒用處了*/
+            }
+            .right {
+
+                width: 200px; 
+                /*區塊寬度*/
+                height: inherit;
+                /*區塊高度，inherit是根據父元素，也可以用100%，或是px來限定高度*/
+                float: left; 
+                /*靠左*/
+                background: Moccasin;
+                /*背景顏色*/
+                border:5px #FFAC55 solid;
+                /*邊框顏色*/
+	            padding:20px;
+                /*內距*/
+            }
 		</style>
-		-->
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+
+		<script type="text/javascript" src="https://raw.githubusercontent.com/johnsu6616/ByBuy/master/jquery-3.5.1.min.js"></script>
 
 
     </head>
     <body>
-		<div class="parent">
-			<div class="left">
+		<div class="wrap">
 
+            <h1>販賣機</h1>
+			<div class="left">
 
 
 				<p>
@@ -73,35 +112,25 @@
 
 			<div class="right">
 			
-				<div id="id01"></div>
-				<!--
+
+
 				<script>
-				var xmlhttp = new XMLHttpRequest();
-				var url = "https://johnsu6616.github.io/ByBuy/ByBuy/itemPrice.json";
 
-				xmlhttp.onreadystatechange = function() {
-					if (this.readyState == 4 && this.status == 200) {
-						var myArr = JSON.parse(this.responseText);
-						myFunction(myArr);
-					}
-				};
-				xmlhttp.open("GET", url, true);
-				xmlhttp.send();
-
-				function myFunction(arr) {
-					var out = "";
-					var i;
-					for(i = 0; i < arr.length; i++) {
-						out += '<a href="' + arr[i].url + '">' + 
-						arr[i].display + '</a><br>';
-					}
-					document.getElementById("id01").innerHTML = out;
-				}
+				$(function () {
+				    $.getJSON('https://raw.githubusercontent.com/johnsu6616/ByBuy/master/itemPrice.json.json')
+                     .success(function (data) {
+                         var tr;
+                         for (var i = 0; i < data.length; i++) {
+                             tr = $('<tr/>');
+                             tr.append("<td>" + data[i][0] + "</td>");
+                             tr.append("<td>" + data[i][1] + "</td>");
+                             $('#id01').append(tr);
+                         }
+                     })
+                    .error(function (e) { console.error(e); })
+				});
 				</script>
-				-->
-				<ul id="myList"></ul>
-				    <div id="disp"></div>
-				<script src="loadJson.js"></script>
+                <div id="id01"></div>
 			</div>
 		</div>
 	</body>
