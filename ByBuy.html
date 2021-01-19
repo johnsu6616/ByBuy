@@ -49,7 +49,7 @@
             }
 		</style>
 
-		<script type="text/javascript" src="https://raw.githubusercontent.com/johnsu6616/ByBuy/master/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 
     </head>
@@ -115,20 +115,23 @@
 
 
 				<script>
+                    $(document).ready(function () {
+                        $(function () {
+                            $.ajaxSettings.async = false;
+                            $.getJSON('https://raw.githubusercontent.com/johnsu6616/ByBuy/master/itemPrice.json')
 
-				$(function () {
-				    $.getJSON('https://raw.githubusercontent.com/johnsu6616/ByBuy/master/itemPrice.json.json')
-                     .success(function (data) {
-                         var tr;
-                         for (var i = 0; i < data.length; i++) {
-                             tr = $('<tr/>');
-                             tr.append("<td>" + data[i][0] + "</td>");
-                             tr.append("<td>" + data[i][1] + "</td>");
-                             $('#id01').append(tr);
-                         }
-                     })
-                    .error(function (e) { console.error(e); })
-				});
+                             .success(function (data) {
+                                 var tr = [];
+                                 for (var i = 0; i < data.length; i++) {
+                                     tr = $('<tr/>');
+                                     tr.append("<td>" + data[i].Product + "</td>");
+                                     tr.append("<td>" + data[i].Price + "</td>");
+                                     $('#id01').append(tr);
+                                 }
+                             })
+                            .error(function (e) { console.error(e); })
+				        });
+                    });
 				</script>
                 <div id="id01"></div>
 			</div>
