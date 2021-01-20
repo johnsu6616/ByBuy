@@ -8,7 +8,7 @@
 		<style type="text/css">
             .wrap {
                 /*一個拿來當作父親的區塊，用甚麼都不太適合?有機會在研究*/
-                height: 850px;
+                height: 950px;
                 display: flex-wrap;
                 /*布局設定*/
 	            position:relative;
@@ -50,7 +50,32 @@
 		</style>
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+				<script>
+                    $(document).ready(function () {
+                        $(function () {
+                            $.ajaxSettings.async = false;
+                            $.getJSON('https://raw.githubusercontent.com/johnsu6616/ByBuy/master/itemPrice.json')
 
+                             .success(function (data) {
+                                 var tr = [];
+                                 for (var i = 0; i < data.length; i++) {
+                                     tr = $('<tr/>');
+                                     tr.append('<Td Width="150">' + data[i].Product + "</td>");
+                                     tr.append("<td>" + data[i].Price + "</td>");
+                                     $('#Menu01').append(tr);
+                                 }
+								 var option = [];
+                                 for (var j = 0; j < data.length; j++) {
+									//option = $('<option/>');
+									//option.append( '<option value="'+data[j].Price+'">'+data[j].Product+("</option>"));
+									option = '<option value="'+data[j].Price+'">'+data[j].Product+("</option>");
+									$('#Menu02').append(option);
+								 }
+                             })
+                            .error(function (e) { console.error(e); })
+				        });
+                    });
+				</script>
 
     </head>
     <body>
@@ -62,7 +87,7 @@
 
 				<p>
 					總額度：
-					<input type="text" name="budget" size="1" value="250">
+					<input type="text" id="YourMoney" name="budget" size="1" value="250">
 				</p>
 
 				<p>
@@ -76,23 +101,20 @@
 								第一次購買
 							</th>
 						</tr>
+
 						<tr>
 							<td>
-								<select>
-									<optgroup label="第一次購買">
-									<option>AA</option>
-									<option>BB</option>
-									<option>CCr</option>
-									<option>DD</option>
-									<option>EE</option>
-									<option>FF</option>
+								<select name="catordog">
+									<optgroup id="Menu02" label="第一次購買">
+
+	
 									</optgroup>
 								</select>
 							</td>
 						</tr>
 							<tr>
 								<td>
-									<input type="text" name="overage" size="1" value="250" readonly>
+									<input type="text" name="overage" size="1" value='YourMoney-value' readonly>
 								</td>
 							</tr>	
 					</tbody>
@@ -114,26 +136,8 @@
 			
 
 
-				<script>
-                    $(document).ready(function () {
-                        $(function () {
-                            $.ajaxSettings.async = false;
-                            $.getJSON('https://raw.githubusercontent.com/johnsu6616/ByBuy/master/itemPrice.json')
 
-                             .success(function (data) {
-                                 var tr = [];
-                                 for (var i = 0; i < data.length; i++) {
-                                     tr = $('<tr/>');
-                                     tr.append("<td>" + data[i].Product + "</td>");
-                                     tr.append("<td>" + data[i].Price + "</td>");
-                                     $('#id01').append(tr);
-                                 }
-                             })
-                            .error(function (e) { console.error(e); })
-				        });
-                    });
-				</script>
-                <div id="id01"></div>
+                <div id="Menu01"></div>
 			</div>
 		</div>
 	</body>
