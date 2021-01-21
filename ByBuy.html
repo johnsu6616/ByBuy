@@ -50,37 +50,46 @@
 		</style>
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-				<script>
-                    $(document).ready(function () {
-                        $(function () {
-                            $.ajaxSettings.async = false;
-                            $.getJSON('https://raw.githubusercontent.com/johnsu6616/ByBuy/master/itemPrice.json')
+		<script>
+            $(document).ready(function () {
+                $(function () {
+                    $.ajaxSettings.async = false;
+                    $.getJSON('https://raw.githubusercontent.com/johnsu6616/ByBuy/master/itemPrice.json')
 
-                             .success(function (data) {
-                                 var tr = [];
-                                 for (var i = 0; i < data.length; i++) {
-                                     tr = $('<tr/>');
-                                     tr.append('<Td Width="150">' + data[i].Product + "</td>");
-                                     tr.append("<td>" + data[i].Price + "</td>");
-                                     $('#Menu01').append(tr);
-                                 }
-								 var option = [];
-                                 for (var j = 0; j < data.length; j++) {
-									//option = $('<option/>');
-									//option.append( '<option value="'+data[j].Price+'">'+data[j].Product+("</option>"));
-									option = '<option value="'+data[j].Price+'">'+data[j].Product+("</option>");
-									$('#Menu02').append(option);
-								 }
-                             })
-                            .error(function (e) { console.error(e); })
-				        });
-                    });
-				</script>
+                        .success(function (data) {
+                            var tr = [];
+                            for (var i = 0; i < data.length; i++) {
+                                tr = $('<tr/>');
+                                tr.append('<Td Width="150">' + data[i].Product + "</td>");
+                                tr.append("<td>" + data[i].Price + "</td>");
+                                $('#Menu01').append(tr);
+                            }
+							var option = [];
+                            for (var j = 0; j < data.length; j++) {
+							//option = $('<option/>');
+							//option.append( '<option value="'+data[j].Price+'">'+data[j].Product+("</option>"));
+							option = '<option value'+ j +'="'+data[j].Price+'">'+data[j].Product+("</option>");
+							$('#Menu02').append(option);
+							}
+                        })
+                    .error(function (e) { console.error(e); })
+				});
+            });
+            function myTest() {
+                var sampleValue = document.getElementById("sample").value;
+                var obj = document.getElementById("test");
+                //document.getElementById("test").innerHTML = sampleValue;
+                for (i = 0; i < obj.length; i++) {
+                    if (obj[i].value == str)
+                        obj[i].selected = true;
+                }
+            }
+
+		</script>
 
     </head>
     <body>
 		<div class="wrap">
-
             <h1>販賣機</h1>
 			<div class="left">
 
@@ -89,11 +98,12 @@
 					總額度：
 					<input type="text" id="YourMoney" name="budget" size="1" value="250">
 				</p>
-
+                <br>
 				<p>
 					可選方案數:
 					<input type="text" name="overage" size="1" value="1509" readonly>
 				</p>
+                <br>
 				<table id="Table" class="table" size="1" style ="border: 1px solid black">
 					<tbody>
 						<tr>
@@ -104,32 +114,41 @@
 
 						<tr>
 							<td>
-								<select name="catordog">
+								<select id="sample" >
 									<optgroup id="Menu02" label="第一次購買">
-
-	
 									</optgroup>
-								</select>
+
+                                        <input type="text" name="overage" size="1" id='test'>
+
+                                    </select>
+
 							</td>
 						</tr>
-							<tr>
-								<td>
-									<input type="text" name="overage" size="1" value='YourMoney-value' readonly>
-								</td>
-							</tr>	
 					</tbody>
+
 				</table>
-				<input type="button" onclick="addRow('myTable')" value="確定">
-	    
+                <p>
+				<!--<input type="button" onclick="addRow('Table')" value="增加一筆">-->
+                <input type="button" onclick="myTest()" value="增加一筆">
+                </p>
+                <br>
 				<p>
 					餘額:
-					<input type="text" name="overage" size="1" value="250" readonly>
+					<input type="text" name="overage" size="1" value=250 readonly>
 				</p>
-	    
+                <br>
 				<p>
 					預設值：
 					<input type="button" onclick="json2table('myTable')" value="還原">
 				</p>
+                <br>
+                <p>
+                    <s>
+                    刪除線範例
+                    </s>
+                </p>
+                <!-- 印出結果 -->
+                <div id="result"></div>
 			</div>
 
 			<div class="right">
