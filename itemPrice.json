@@ -1,4 +1,5 @@
 [
+{ "Product": "0.空值", "Price": 0 },
 { "Product": "1.可樂果", "Price": 24 },
 { "Product": "3.多力多滋", "Price": 29 },
 { "Product": "5.卡辣姆久", "Price": 24 },
