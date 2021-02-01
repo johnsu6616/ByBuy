@@ -3,8 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>ByBuy</title>
-        <link rel="shortcut icon" href="favicon.ico">
-
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<style type="text/css">
             .wrap {
                 /*一個拿來當作父親的區塊，用甚麼都不太適合?有機會在研究*/
@@ -69,8 +68,9 @@
 							//option = $('<option/>');
 							//option.append( '<option value="'+data[j].Price+'">'+data[j].Product+("</option>"));
 							//option = '<option value'+ j +'="'+data[j].Price+'">'+data[j].Product+("</option>");
+                            //&#160;是空白符號，也等於&amp;nbsp;但第一個在文字上比較沒有問題，後面則是有可能會被輸出完整字串
                                 option = $('<tr/>');
-                                option = '<option value'+ [j] +'="'+data[j].Price+'">'+data[j].Product +"&#160;"+"&#160;"+"$"+ data[j].Price +("</option>");
+                                option = '<option value'+ [j] +'="'+data[j].Price+'">'+data[j].Product +"&#160;&#160;$"+ data[j].Price +("</option>");
 							$('#Menu02').append(option);
 							}
                         })
@@ -102,7 +102,7 @@
 				</p>
                 <br>
 				<p>
-					可選方案數：
+					完美方案數：
 					<input type="text" name="overage" size="1" value="1509" readonly>
 				</p>
                 <br>
@@ -132,8 +132,8 @@
 				</table>
                 <p>
 				<!--<input type="button" onclick="addRow('Table')" value="增加一筆">-->
-                <input type="button" onclick="myTest()" value="增加一筆">
-                <input type="button" onclick="myTest()" value="減少一筆">
+                <input type="button" onclick="myTest1()" value="增加一筆">
+                <input type="button" onclick="myTest2()" value="減少一筆">
                 <input type="button" onclick="json2table('myTable')" value="初始化">
                 </p>
                 <br>
