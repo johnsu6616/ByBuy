@@ -1,10 +1,9 @@
 ﻿<!--註解用法-->
 <html>
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="UTF-8">
 		<title>ByBuy</title>
-
-
+        <link rel="icon" href="https://raw.githubusercontent.com/johnsu6616/ByBuy/master/favicon.ico" type="image/x-icon">
 		<style type="text/css">
             .wrap {
                 /*一個拿來當作父親的區塊，用甚麼都不太適合?有機會在研究*/
@@ -17,7 +16,7 @@
             p {margin: 0; }
             .left {
 
-                width: 200px;
+                width: 250px;
                 /*區塊寬度*/
                 height: inherit; 
                 /*區塊高度，inherit是根據父元素，也可以用100%，或是px來限定高度*/
@@ -61,14 +60,17 @@
                             for (var i = 0; i < data.length; i++) {
                                 tr = $('<tr/>');
                                 tr.append('<Td Width="150">' + data[i].Product + "</td>");
-                                tr.append("<td>" + data[i].Price + "</td>");
+                                tr.append("<td>" +"$"+ data[i].Price + "</td>");
                                 $('#Menu01').append(tr);
                             }
 							var option = [];
                             for (var j = 0; j < data.length; j++) {
 							//option = $('<option/>');
 							//option.append( '<option value="'+data[j].Price+'">'+data[j].Product+("</option>"));
-							option = '<option value'+ j +'="'+data[j].Price+'">'+data[j].Product+("</option>");
+							//option = '<option value'+ j +'="'+data[j].Price+'">'+data[j].Product+("</option>");
+                            //&#160;是空白符號，也等於&amp;nbsp;但第一個在文字上比較沒有問題，後面則是有可能會被輸出完整字串
+                                option = $('<tr/>');
+                                option = '<option value'+ [j] +'="'+data[j].Price+'">'+data[j].Product +"&#160;&#160;$"+ data[j].Price +("</option>");
 							$('#Menu02').append(option);
 							}
                         })
@@ -100,7 +102,7 @@
 				</p>
                 <br>
 				<p>
-					可選方案數:
+					完美方案數：
 					<input type="text" name="overage" size="1" value="1509" readonly>
 				</p>
                 <br>
@@ -108,19 +110,20 @@
 					<tbody>
 						<tr>
 							<th>
-								第一次購買
+								購買項目
 							</th>
 						</tr>
 
 						<tr>
 							<td>
 								<select id="sample" >
-									<optgroup id="Menu02" label="第一次購買">
+									<optgroup id="Menu02">
 									</optgroup>
 
-                                        <input type="text" name="overage" size="1" id='test'>
+                                        <!--<input type="text" name="overage" size="1" id='test'>-->
 
-                                    </select>
+
+                                </select>
 
 							</td>
 						</tr>
@@ -129,17 +132,14 @@
 				</table>
                 <p>
 				<!--<input type="button" onclick="addRow('Table')" value="增加一筆">-->
-                <input type="button" onclick="myTest()" value="增加一筆">
+                <input type="button" onclick="myTest1()" value="增加一筆">
+                <input type="button" onclick="myTest2()" value="減少一筆">
+                <input type="button" onclick="json2table('myTable')" value="初始化">
                 </p>
                 <br>
 				<p>
-					餘額:
+					餘額：
 					<input type="text" name="overage" size="1" value=250 readonly>
-				</p>
-                <br>
-				<p>
-					預設值：
-					<input type="button" onclick="json2table('myTable')" value="還原">
 				</p>
                 <br>
                 <p>
