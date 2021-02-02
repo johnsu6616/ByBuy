@@ -1,4 +1,5 @@
-﻿<!--註解用法-->
+﻿
+<!--註解用法-->
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -46,6 +47,8 @@
 	            padding:20px;
                 /*內距*/
             }
+
+}
 		</style>
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -69,14 +72,24 @@
 							//option.append( '<option value="'+data[j].Price+'">'+data[j].Product+("</option>"));
 							//option = '<option value'+ j +'="'+data[j].Price+'">'+data[j].Product+("</option>");
                             //&#160;是空白符號，也等於&amp;nbsp;但第一個在文字上比較沒有問題，後面則是有可能會被輸出完整字串
-                                option = $('<tr/>');
-                                option = '<option value'+ [j] +'="'+data[j].Price+'">'+data[j].Product +"&#160;&#160;$"+ data[j].Price +("</option>");
-							$('#Menu02').append(option);
+                                //option = $('<tr/>');
+                                option = '<option value'+ [j] +'="'+data[j].Price+'">'+'<Td Width="150">'+data[j].Product +"</td>"+"&#160;&#160;$"+"<td>"+ data[j].Price+"</td>" +("</option>");
+							$('#menuSelect').append(option);
 							}
                         })
                     .error(function (e) { console.error(e); })
 				});
             });
+            $(function(){
+              $("#add").click(function(){
+                  $('#Table tbody').append('<tr><td><selectid="sample"><optgroup id="menuSelect"></optgroup></select></td></tr>');
+                  									
+                tag++;
+               });
+              $("#del").click(function(){
+                  $("#Table tbody tr:last").remove();
+              });
+            })
             function myTest() {
                 var sampleValue = document.getElementById("sample").value;
                 var obj = document.getElementById("test");
@@ -106,18 +119,20 @@
 					<input type="text" name="overage" size="1" value="1509" readonly>
 				</p>
                 <br>
-				<table id="Table" class="table" size="1" style ="border: 1px solid black">
+				<table id="Table" class="table" size="1" style ="border: 1px solid black" width="auto">
+                    <thead>
+        <tr>
+            <th colspan="2">購買項目</th>
+        </tr>
+    </thead>
+
 					<tbody>
-						<tr>
-							<th>
-								購買項目
-							</th>
-						</tr>
+
 
 						<tr>
 							<td>
-								<select id="sample" >
-									<optgroup id="Menu02">
+								<select id="sample" width="240" style="width: 240px">
+									<optgroup id="menuSelect" width: 'auto'>
 									</optgroup>
 
                                         <!--<input type="text" name="overage" size="1" id='test'>-->
@@ -132,9 +147,10 @@
 				</table>
                 <p>
 				<!--<input type="button" onclick="addRow('Table')" value="增加一筆">-->
-                <input type="button" onclick="myTest1()" value="增加一筆">
-                <input type="button" onclick="myTest2()" value="減少一筆">
-                <input type="button" onclick="json2table('myTable')" value="初始化">
+                <input type="button" id="add" value="增加一筆">
+                <input type="button" id="del"value="減少一筆">
+
+                <input type="reset" value="初始化">
                 </p>
                 <br>
 				<p>
